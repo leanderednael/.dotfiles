@@ -2,7 +2,7 @@
 # https://www.freecodecamp.org/news/how-to-configure-your-macos-terminal-with-zsh-like-a-pro-c0ab3f3c1156/
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH"
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -73,7 +73,9 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+# git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+plugins=(zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -108,41 +110,45 @@ source $ZSH/oh-my-zsh.sh
 
 
 
-# Go
-# brew install go
-export PATH=$PATH:/usr/local/go/bin
-
-# Haskell
-# brew install ghc cabal-install
-
-# Java
-# brew install openjdk
-export PATH=/opt/homebrew/opt/openjdk/bin:$PATH
-
-# LaTeX
-# brew install mactex pandoc
-# export PATH=$PATH:/Library/TeX/texbin
-
-# Node
-
-## NVM:
-# brew install nvm node
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Python
-
-## Anaconda:
+# Anaconda:
 # brew install anaconda
-export PATH=$PATH:/opt/homebrew/anaconda3/bin
 source /opt/homebrew/anaconda3/etc/profile.d/conda.sh
 
-## Pyenv:
+# Go:
+# brew install go
+export PATH="/opt/homebrew/opt/go/bin:$PATH"
+
+# Haskell:
+# brew install ghc cabal-install
+
+# Java:
+# brew install maven openjdk
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# LaTeX:
+# brew install mactex pandoc
+export PATH="/Library/TeX/texbin:$PATH"
+
+# Node.js:
+# brew install nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# Python:
 # brew install pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-# Rust
+# Ruby:
+# brew install rbenv ruby-build
+eval "$(rbenv init -)"
+
+# Rust:
 # brew install rustup && rustup-init
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Scala:
+# brew install scala sbt
+export PATH="/opt/homebrew/opt/scala/bin:$PATH"

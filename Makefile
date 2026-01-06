@@ -37,17 +37,17 @@ help: ## Show the available commands
 	grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 .PHONY: export-code-extensions
-export-code-extensions: ## Export the installed VSCode extensions to a JSON file
+export-code-extensions: ## Export installed VSCode extensions to JSON file
 	$(call export_extensions,VSCode,$(CODE_CMD))
 
 .PHONY: export-cursor-extensions
-export-cursor-extensions: ## Export the installed Cursor extensions to a JSON file
+export-cursor-extensions: ## Export installed Cursor extensions to JSON file
 	$(call export_extensions,Cursor,$(CURSOR_CMD))
 
 .PHONY: install-code-extensions
-install-code-extensions: ## Install VSCode extensions from the JSON file
+install-code-extensions: ## Install VSCode extensions from JSON file
 	$(call install_extensions,VSCode,$(CODE_CMD))
 
 .PHONY: install-cursor-extensions
-install-cursor-extensions: ## Install Cursor extensions from the JSON file
+install-cursor-extensions: ## Install Cursor extensions from JSON file
 	$(call install_extensions,Cursor,$(CURSOR_CMD))
