@@ -12,6 +12,7 @@
   },
   "files.autoSave": "afterDelay",
   "files.insertFinalNewline": true,
+  "git.addAICoAuthor": "off",
   "github.copilot.enable": {
     "*": true,
     "dotenv": false,

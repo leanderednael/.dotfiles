@@ -1,5 +1,5 @@
-SHELL         := /usr/bin/env bash
-MAKEFLAGS     += --silent
+SHELL           := /usr/bin/env bash
+MAKEFLAGS       += --silent
 
 -include .env
 export
@@ -7,7 +7,7 @@ export
 VSCODE_DIR      := .vscode
 EXTENSIONS_FILE := extensions.json
 
-CODE_CMD        := code
+VSCODE_CMD      := code
 CURSOR_CMD      := cursor
 
 define export_extensions
@@ -30,24 +30,26 @@ define install_extensions
 endef
 
 default: help
+all-vscode: install-vscode-extensions export-vscode-extensions ## Install and export VSCode extensions
+all-cursor: install-cursor-extensions export-cursor-extensions ## Install and export Cursor extensions
 
 .PHONY: help
 help: ## Show the available commands
 	echo "Available commands:"
 	grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-.PHONY: export-code-extensions
-export-code-extensions: ## Export installed VSCode extensions to JSON file
-	$(call export_extensions,VSCode,$(CODE_CMD))
+.PHONY: export-vscode-extensions
+export-vscode-extensions: ## Export extensions installed in VSCode to JSON file
+	$(call export_extensions,VSCode,$(VSCODE_CMD))
 
 .PHONY: export-cursor-extensions
-export-cursor-extensions: ## Export installed Cursor extensions to JSON file
+export-cursor-extensions: ## Export extensions installed in Cursor to JSON file
 	$(call export_extensions,Cursor,$(CURSOR_CMD))
 
-.PHONY: install-code-extensions
-install-code-extensions: ## Install VSCode extensions from JSON file
-	$(call install_extensions,VSCode,$(CODE_CMD))
+.PHONY: install-vscode-extensions
+install-vscode-extensions: ## Install extensions in VSCode from JSON file
+	$(call install_extensions,VSCode,$(VSCODE_CMD))
 
 .PHONY: install-cursor-extensions
-install-cursor-extensions: ## Install Cursor extensions from JSON file
+install-cursor-extensions: ## Install extensions in Cursor from JSON file
 	$(call install_extensions,Cursor,$(CURSOR_CMD))
